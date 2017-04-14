@@ -1,0 +1,71 @@
+ <!--H W: Right now the counter clicks up, but once you refresh page, it goes back to O. 
+        Challenge: Write code so it starts at the LAST # even after refreshing + still count up if clicked. 
+
+ STEP 1: Add bootstrap CDN, before STYLE in HEAD (Line 14)-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Sooooo Cute</title>
+
+	<link rel="shortcut icon" type="image/png" href="http://www.clipartkid.com/images/436/buy-tickets-png-m8z2NO-clipart.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">	
+
+    <style>
+		img {
+			height: 200px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Tix Avail! How Many Do You Need?</h1>
+		<h3 id="clicks1">Click photo to buy event ticket!</h3>
+        <h3 id="clicks2">Click photo to buy event ticket!</h3>
+		<div>
+			<img src="http://youredm.youredm1.netdna-cdn.com/wp-content/uploads/2015/12/edm-rave-crowd-1.jpg?x56677" alt="Rave" id="rave">
+			<img src="https://girltripping.com/beta/wp-content/uploads/2015/06/1434770172_full.jpeg" alt="Pool-Party" id="pool">
+		</div>
+	</div>
+	<script>
+		// var rave1 = 0;  <------this was from before setting it on auto click
+        // var pool1 = 0; <------this was from before setting it on auto click
+
+        //local.Storage is where the internal counter gets info from.
+
+if(localStorage.getItem("rave1") === null){
+    var rave1 = 0;
+
+} else{
+    var rave1 = localStorage.getItem("rave1");
+        document.getElementById("clicks1").textContent = `${rave1} Rave party tix purchased :)`;
+
+}
+
+if(localStorage.getItem("pool1") === null){
+    var pool1 = 0;
+
+} else{
+    var pool1 = localStorage.getItem("pool1");
+        document.getElementById("clicks2").textContent = `${pool1} Pool party tix purchased :)`;
+
+}
+
+    	document.getElementById("rave").addEventListener("click", function () {
+			rave1++;
+            localStorage.setItem("rave1", rave1);
+			document.getElementById("clicks1").textContent = `${rave1} Rave party tix purchased :)`;
+		});
+        	document.getElementById("pool").addEventListener("click", function () {
+			pool1++;
+            localStorage.setItem("pool1", pool1);
+			document.getElementById("clicks2").textContent = `${pool1} Pool party tix purchased :)`;
+		});
+        
+	</script>
+</body>
+
+</html>
